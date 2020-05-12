@@ -30,6 +30,7 @@ class UserController extends Controller
                 'email' => $user->email,
                 'password' => '',
                 'social_id' => $user->id,
+                'phone' => rand(),
                 'role' => 0,
                 'status' => 0,
                 'avatar' => $user->avatar,
@@ -68,7 +69,8 @@ class UserController extends Controller
         $data = $request->only('email','password');
         if(Auth::attempt($data,$request->has('remember'))){
             return back()->with('thongbao','Đăng nhập thành công');
-        }else{
+        }
+        else{
             return back()->with('error','Đăng nhập thất bại. Xin vui lòng kiểm tra lại tài khoản');
         }
     }
@@ -78,7 +80,7 @@ class UserController extends Controller
             [
                 'name' => 'required|min:2|max:255',
                 'email' => 'required|email|unique:users,email',
-                'password' => 'required|min:6|max:255',
+                'password' => 'required|min:4|max:255',
                 're_password' => 'required|same:password',
             ],
             [
@@ -97,15 +99,11 @@ class UserController extends Controller
         );
         $data = $request->all();
         $data['password'] = Hash::make($request->password);
-        $user = User::create($data);
-        Auth::login($user);
+        $userCreate = User::create($data);
+        Auth::login($userCreate);
         return back()->with('thongbao','Đăng ký tài khoản thành công');
     }
 
-//    public function getLogin()
-//    {
-//        return view('admin.login');
-//    }
 
     public function postLogin(Request $request)
     {
@@ -138,7 +136,7 @@ class UserController extends Controller
                 return redirect('admin/product')->with('thongbao','Đăng nhập thành công');
             }
             else if (Auth::user()->role==4) {
-                return redirect()->route('order.index');
+                return redirect()->route('admin/order');
             }
         }
     }
@@ -157,7 +155,7 @@ class UserController extends Controller
     public function index()
     {
         $user = User::all();
-        return view('admin.pages.user.list_user',['user' => $user]);
+        return view('admin.pages.user.listuser',['user' => $user]);
     }
 
     /**
@@ -213,150 +211,44 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-//            $validator = Validator::make($request->all(),
-//                [
-//                    'name' => 'required|min:3|max:255',
-//                    'email' => 'required|min:3',
-//                    'password' => 'required',
-//                    'phone' => 'required|numeric',
-//                    'avatar' => 'image'
-//                ],
-//                [
-//                    'required' => ':attribute không được để trống',
-//                    'min' => ':attribute phải từ 3 đến 255 kí tự',
-//                    'max' => ':attribute phải từ 3 đến 255 kí tự',
-//                    'numeric' => ':attribute phải là số nguyên',
-//                    'avatar' => ':attribute phải là hình ảnh'
-//
-//                ],
-//                [
-//                    'name' => 'Tên người dùng',
-//                    'email' => 'Địa chỉ Email',
-//                    'password' => 'Mật khẩu',
-//                    'phone' => 'Số điện thoại',
-//                    'avatar' => 'Ảnh đại diện',
-//                ]
-//            );
-//            if ($validator->fails()) {
-//                return response()->json(['error' => 'true', 'message' => $validator->errors()], 200);
-//            }
-//                $user = User::find($id);
-//                $data = $request->all();
-//                $data['password'] = $user->password;
-//                if (Hash::check($data['password'])) {
-//                    if ($request->hasFile('avatar')) {
-//                        $file = $request->avatar;
-//                        //lay tên file getClient
-//                        $file_name = $file->getClientOriginalName();
-//                        // loại file
-//                        $file_type = $file->getMimeType();
-//                        //kick thuoc file
-//                        $file_size = $file->getSize();
-//                        if ($file_type == 'image/png' || $file_type == 'image/jpg' || $file_type == 'image/jpeg' || $file_type == 'image/gif') {
-//                            if ($file_size <= 1048576) {
-//                                $file_name = date('d-m-y') . '-' . rand() . '-' . utf8tourl($file_name);
-//                                if ($file->move('img/upload/user', $file_name)) {
-//                                    $data['avatar'] = $file_name;
-//                                    if (File::exists('img/upload/user' . $user->avatar)) {
-//                                        unlink('img/upload/user' . $user->avatar);
-//                                    }
-//                                }
-//
-//                            } else {
-//                                return response()->json(['error', 'Ảnh của bạn có dung lượng quá lớn'], 200);
-//                            }
-//                        } else {
-//                            return response()->json(['error', 'File đã chọn không phải là ảnh'], 200);
-//                        }
-//
-//                    } else {
-//                        $data['avatar'] = $user->avatar;
-//                    }
-//                }
-//                $user->update([
-//                    'name' => $data['name'],
-//                    'email' => $data['email'],
-//                    'password' => Hash::make($data['password']),
-//                    'phone' => $data['phone'],
-//                    'role' => $data['role'],
-//                    'status' => $data['status'],
-//                    'avatar' => $data['avatar'],
-//                ]);
-//                return response()->json(['result' => 'Đã sửa thành công sản phẩm'], 200);
-    }
+            $validator = Validator::make($request->all(),
+                [
+                    'name' => 'required|min:3|max:255',
+                    'email' => 'required|min:3',
+                    'password' => 'required',
+                    'phone' => 'required|numeric',
+                    'avatar' => 'image'
+                ],
+                [
+                    'required' => ':attribute không được để trống',
+                    'min' => ':attribute phải từ 3 đến 255 kí tự',
+                    'max' => ':attribute phải từ 3 đến 255 kí tự',
+                    'numeric' => ':attribute phải là số nguyên',
+                    'avatar' => ':attribute phải là hình ảnh'
 
-    public function postEditUser(Request $request)
-    {
-        $countUser = count(User::all());
-        for ($cnt = 1; $cnt <= $countUser; $cnt++) {
-            if (isset($_POST['edit_user_' . $cnt])) {
-
-                $id = $request->input("id_user_" . $cnt);
-                $passold = User::find($id)->password;
-                if ($request->file("fmi_avatar_edit_" . $cnt) != NULL) {
-                    $avatar = date('Y-m-d') . '_' . round(microtime(true) * 1000) . '_' . $request->file("fmi_avatar_edit_" . $cnt)->getClientOriginalName();
-                } else {
-                    $avatar = $request->input("fmi_avatar_" . $cnt);
-                }
-                $name = $_POST["fmi_fullname_edit_" . $cnt];
-                $email = $_POST["fmi_email_edit_" . $cnt];
-                $phone = $_POST["fmi_phone_edit_" . $cnt];
-                $role = $_POST["fmi_role_edit_" . $cnt];
-                $password = $_POST["fmi_pass_old_edit_" . $cnt];
-                $password1 = $_POST["fmi_pass_new_edit_" . $cnt];
-                $password2 = $_POST["fmi_pass_new2_edit_" . $cnt];
-                if (Hash::check($password, $passold)) {
-                    if ($password1 == $password2) {
-                        $typefile = $request->file("fmi_avatar_edit_" . $cnt)->getMimeType();
-                        $type = explode("/", $typefile)[0];// Hàm explode biến 1 chuỗi về 1 mảng
-                        if ($type != "image") {
-                            return back()->with('noti1', "FILE upload phải là FILE Image!");
-                        } else {
-                            $updateuser = User::find($id);
-                            $updateuser->name = $name;
-                            $updateuser->email = $email;
-                            $updateuser->phone = $phone;
-                            $updateuser->avatar = $avatar;
-                            $updateuser->role = $role;
-                            $updateuser->password = Hash::make($password1);
-                            if ($request->file("fmi_avatar_edit_" . $cnt) != NULL) {
-
-                                $request->file("fmi_avatar_" . $cnt)->move(public_path('libraries/images/avatar'), $avatar);
-                            }
-                            $updateuser->save();
-                        }
-
-                    } else {
-                        return back()->with('noti1', "Mật khẩu không trùng khớp!");
-                    }
-                } elseif ($password == "" && $password1 == "" && $password2 == "") {
-
-                    $typefile = $request->file("fmi_avatar_edit_".$cnt)->getMimeType();
-                    $type = explode("/", $typefile)[0]; //Hàm ex
-
-                    if ($type != "image") {
-                        return back()->with('noti1', "FILE upload phải là FILE Image!");
-                    } else {
-                        $updateuser = User::find($id);
-                        //$typefile này sẽ luôn cho 1 chuỗi dạng như thế này xxx/yyy. xxx và yyy được cách nhau 1 dấu
-                        //thì giờ ta dùng explode để đưa về 2 phần tử của mảng
-                        $updateuser->name = $name;
-                        $updateuser->email = $email;
-                        $updateuser->phone = $phone;
-                        $updateuser->avatar = $avatar;
-                        if ($request->file("fmi_avatar_edit_".$cnt) != NULL) {
-                            $request->file("fmi_avatar_edit".$cnt)->move(public_path('libraries/images/avatar'), $avatar);
-                        }
-
-                        $updateuser->role = $role;
-                        $updateuser->save();
-                        return back();
-                    }
-                } else {
-                    return back()->with('noti1', "Mật khẩu cũ không đúng!");
-                }
+                ],
+                [
+                    'name' => 'Tên người dùng',
+                    'email' => 'Địa chỉ Email',
+                    'password' => 'Mật khẩu',
+                    'phone' => 'Số điện thoại',
+                    'avatar' => 'Ảnh đại diện',
+                ]
+            );
+            if ($validator->fails()) {
+                return response()->json(['error' => 'true', 'message' => $validator->errors()], 200);
             }
-        }
+                $user = User::find($id);
+                $password = Hash::make($request->password);
+                $user->update([
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'password' => $password,
+                    'phone' => $request->phone,
+                    'role' => $request->role,
+                    'status' => $request->status,
+                ]);
+                return response()->json(['success' => 'Đã sửa thành công tài khoản'], 200);
     }
 
     /**
@@ -367,7 +259,7 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+
     }
 
 }

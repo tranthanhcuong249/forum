@@ -140,7 +140,7 @@
 @include('client.layouts.footer')
 <div class="copy-right py-3">
     <div class="container">
-        <p class="text-center text-white">© SVC GROUP
+        <p class="text-center text-white"> © SVC GROUP
             <a href="https://www.facebook.com/betta.heo.1"> Facebook.</a>
         </p>
     </div>
@@ -148,3 +148,4 @@
 </body>
 </html>
 @include('client.layouts.js')
+

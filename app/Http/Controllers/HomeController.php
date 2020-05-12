@@ -46,4 +46,6 @@ class HomeController extends Controller
             return view('client.pages.detail_protype', ['product' => $productByProdType, 'producttype' => $idProType]);
         }
     }
+
+
 }

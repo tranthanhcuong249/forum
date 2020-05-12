@@ -18,7 +18,7 @@
                             <i class="fas fa-truck mr-2"></i>Viettel Post</a>
                     </li>
                     <li class="text-center border-right text-white">
-                        <i class="fas fa-phone mr-2"></i> 001 234 5678
+                        <i class="fas fa-phone mr-2"></i> {{Rand()}}
                     </li>
                     @if(Auth::check())
                         <li class="text-center border-right ">
@@ -67,11 +67,11 @@
                     @else
                         <li class="text-center border-right text-white">
                             <a href="#" data-toggle="modal" data-target="#login" class="text-white">
-                                <i class="fas fa-sign-in-alt mr-2"></i> Log In </a>
+                                <i class="fas fa-sign-in-alt mr-2"></i> Đăng Nhập </a>
                         </li>
                         <li class="text-center text-white">
                             <a href="#" data-toggle="modal" data-target="#register" class="text-white">
-                                <i class="fas fa-sign-out-alt mr-2"></i>Register </a>
+                                <i class="fas fa-sign-out-alt mr-2"></i>Đăng Ký </a>
                         </li>
                     @endif
 

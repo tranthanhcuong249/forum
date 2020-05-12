@@ -76,14 +76,12 @@ class ProductController extends Controller
                                 return back()->with('thongbaoproduct', 'Đã có lỗi xảy ra');
                             }
                         }
-
                     } else {
                         return back()->with('thongbaoproduct', 'Không thể upload ảnh kích thước quá 10mb');
                     }
                 } else {
                     return back()->with('thongbaoproduct', 'Không thể upload file khác loại ảnh');
                 }
-
             } else {
                 return back()->with('thongbaoproduct', 'Bạn chưa thêm ảnh minh họa sản phẩm');
             }

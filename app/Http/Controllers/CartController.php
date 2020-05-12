@@ -41,6 +41,7 @@ class CartController extends Controller
         $cart = ['id' => $id, 'name' => $product->name,'quantity' => $quantity,'price' =>$price, 'attributes' => ['img' => $product->image]];
         Cart::add($cart);
         return back()->with('thongbao','Đã mua hàng '.$product->name.' thành công');
+
     }
     /**
      * Display a listing of the resource.
@@ -135,10 +136,15 @@ class CartController extends Controller
      */
     public function update($id, Request $request)
     {
+        $product = Product::find($id);
         if($request->ajax()){
             if($request->qty == 0){
                 return response()->json(['error' => 'Số lượng tối thiểu là 1 sản phẩm'],200);
-            }else{
+            }
+            elseif ($request->qty > $product->quantity ) {
+                return response()->json(['error' => 'Số lượng tối đa có thể mua là ' .  $product->quantity],200);
+            }
+            else {
                 Cart::update($id,array('quantity' => array(
                     'relative' => false,
                     'value' => $request->qty
@@ -147,6 +153,15 @@ class CartController extends Controller
                 return response()->json(['result' => 'Đã cập số lượng sản phẩm thành công']);
             }
         }
+        $quan = $product->quantity;
+        $qty = $request->qty;
+        $quantity = $quan - $qty;
+        $product['quantity'] = $quantity;
+        $product->save();
+    }
+
+    public function postEditquantity($id, Request $request){
+
     }
 
     /**

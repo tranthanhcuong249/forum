@@ -12,7 +12,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <strong class="card-title">Categories</strong>
+                            <strong class="card-title">Danh mục</strong>
                         </div>
                         <div class="card-body">
                             <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
@@ -51,7 +51,6 @@
                         </div>
                     </div>
                 </div>
-                {{ $users->links() }}
             </div>
         </div>
         <!-- .animated -->
@@ -71,15 +70,15 @@
                     <div class="col-lg-12">
                         <form>
                             <div class="form-group">
-                                <label>Name Category</label>
+                                <label>Tên danh mục</label>
                                 <input type="text" class="form-control namecat"  name="name"  placeholder="Enter the name of the category" >
                                 <div class="error" style="color: red"></div>
                             </div>
                             <div class="form-group">
-                                <label>Status Category</label>
+                                <label>Trạng thái</label>
                                 <select class="form-control status" name="status">
-                                    <option class="ht" value="1">Display</option>
-                                    <option class="kht" value="0">Not Display</option>
+                                    <option class="ht" value="1">Hiển thị</option>
+                                    <option class="kht" value="0">Không hiển thị</option>
                                 </select>
                             </div>
                             <div class="form-actions form-group">
@@ -89,7 +88,7 @@
                                     <button type="submit" class="btn btn-success " style="font-size: 11px; border-radius:2px;
                                                                             font-weight: 700;">Làm lại</button>
                                     <button type="submit" class="btn btn-danger " style="font-size: 11px; border-radius:2px;
-                                                                            font-weight: 700;">Cancle</button>
+                                                                            font-weight: 700;">Hủy</button>
                                 </div>
                             </div>
                         </form>

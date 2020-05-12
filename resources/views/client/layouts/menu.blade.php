@@ -4,7 +4,7 @@
             <div class="agileits-navi_search">
                 <form action="#" method="post">
                     <select id="agileinfo-nav_search" name="agileinfo_search" class="border">
-                        <option value="">danh mục sản phẩm</option>
+                        <option value="">Danh mục</option>
                         @foreach($category as $cate)
                             <option value="{{ $cate->id }}">{{ $cate->name }}</option>
                         @endforeach

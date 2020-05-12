@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Order;
+use App\Models\Order;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -14,7 +14,8 @@ class OrderController extends Controller
      */
     public function index()
     {
-        echo "Bạn đã vào order";
+        $order = Order::all();
+        return view('admin.pages.order.list', ['order' => $order]);
     }
 
     /**
@@ -55,9 +56,10 @@ class OrderController extends Controller
      * @param  \App\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function edit(Order $order)
+    public function edit($id)
     {
-        //
+        $order = Order::find($id);
+        return response()->json(['order'=>$order],200);
     }
 
     /**
@@ -67,9 +69,16 @@ class OrderController extends Controller
      * @param  \App\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Order $order)
+    public function update(Request $request, $id)
     {
-        //
+        $order = Order::find($id);
+        $data['status'] = $request->status;
+        if($order->update($data)) {
+            return response()->json(['success' => 'Đã sửa thành công đơn hàng của khách hàng tên là '.$order->name],200);
+        }
+        else {
+            return response()->json(['success' => 'Đã sửa đơn hàng thành công của khách hàng tên là '.$request->name],200);
+        }
     }
 
     /**
@@ -78,8 +87,13 @@ class OrderController extends Controller
      * @param  \App\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Order $order)
+    public function destroy($id)
     {
-        //
+        $order = Order::find($id);
+        if ($order->delete()) {
+            return response()->json(['success' => 'Đã xóa thành công đơn hàng của ' . $order->name], 200);
+        } else {
+            return response()->json(['success' => 'Đã xóa thành công đơn hàng của ' . $order->name], 200);
+        }
     }
 }

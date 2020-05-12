@@ -30,8 +30,11 @@ Route::group(['prefix' => 'admin','middleware' => 'AdminMiddleware'],function ()
     	Route::resource('producttype','ProductTypeController');
     	Route::resource('product','ProductController');
         Route::resource('user','UserController');
+        Route::resource('shiporder','ShipOrderController');
+        Route::resource('doneorder','DoneOrderController');
         Route::resource('order','OrderController');
         Route::resource('topictype','TopicTypeController');
+        Route::post('edit-quantity','CartController@postEditquantity');
 
 });
 //client

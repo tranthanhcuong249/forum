@@ -10,7 +10,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <strong class="card-title">ProductType</strong>
+                            <strong class="card-title">Loại sản phẩm</strong>
                         </div>
                         <div class="card-body">
                             <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
@@ -18,7 +18,6 @@
                                     <tr>
                                         <th>STT</th>
                                         <th>TÊN SẢN PHẨM</th>
-                                        <th>MÔ TẢ</th>
                                         <th>THÔNG TIN</th>
                                         <th>DANH MỤC</th>
                                         <th>LOẠI SẢN PHẨM</th>
@@ -31,7 +30,6 @@
                                         <tr>
                                             <td>{{ $key+1 }}</td>
                                             <td>{{ $value->name }}</td>
-                                            <td>{!! $value->description !!}</td>
                                             <td>
                                                 <b>SỐ LƯỢNG</b> :{{ $value->quantity }}
                                                 <br/>
@@ -113,7 +111,7 @@
                             <img class="img img-thumbnail imageThum" alt="photo" width="100px" height="100px" align="center">
                             <div class="form-group">
                                 <label>Hình ảnh</label>
-                                <input type="file" name="image" class="form-control imagePro"     >
+                                <input type="file" name="image" class="form-control imagePro"/>
                                 <div class="alert alert-danger errorImage" style="color: red"></div>
                             </div>
                             <div class="form-group">
@@ -142,7 +140,7 @@
                                 <button type="submit" class="btn btn-success " style="font-size: 11px; border-radius:2px;
                                                                             font-weight: 700;">Làm lại</button>
                                 <button type="submit" class="btn btn-danger " style="font-size: 11px; border-radius:2px;
-                                                                            font-weight: 700;">Cancle</button>
+                                                                            font-weight: 700;">Hủy</button>
                             </div>
                         </form>
                     </div>

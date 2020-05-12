@@ -21,7 +21,7 @@ class CategoriesController extends Controller
     {
         $user = Auth::user();
         if($user->can('view',Categories::class)) {
-            $allcategories=Categories::paginate(3);
+            $allcategories=Categories::all();
             return view('admin.pages.categories.list',['categories'=>$allcategories]);
         }
         else {
@@ -139,8 +139,11 @@ class CategoriesController extends Controller
         if($user->can('delete',Categories::class)) {
             $category = Categories::find($id);
             if(count($category->productType)===0) {
-                $category->delete();
-                return response()->json(['success' => 'xóa danh mục sản phẩm thành công']);
+                if ($category->delete()) {
+                    return response()->json(['success' => 'xóa danh mục sản phẩm thành công']);
+                } else {
+                    return response()->json(['success' => 'Đã có lỗi xảy ra'], 200);
+                }
             }
             else {
                 return response()->json(['success' => 'không thế xóa được']);

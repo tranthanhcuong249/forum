@@ -81,7 +81,9 @@
 			</div>
             <div class="checkout-left">
                 <div class="address_form_agile mt-sm-5 mt-4">
-                    <a href="{{ route('cart.ckeckout') }}" class="submit check_out btn">Giao hàng đến địa chỉ này</a>
+                    <div class="checkout-right-basket">
+                        <a href="{{ route('cart.ckeckout') }}" class="submit check_out btn">Giao hàng đến địa chỉ này</a>
+                    </div>
                     <div class="checkout-right-basket">
                         <a href="payment.html">Chọn phương thức thanh toán
                             <span class="far fa-hand-point-right"></span>

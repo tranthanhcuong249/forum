@@ -1,7 +1,7 @@
 @extends('client.layouts.master')
 
 @section('title')
-    Sản phẩm của loại {{ $producttype->name ?? '' }}
+    {{ $producttype->name ?? '' }}
 @endsection
 
 @section('content')

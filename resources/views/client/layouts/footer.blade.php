@@ -3,11 +3,12 @@
     <div class="footer-top-first">
         <div class="container py-md-5 py-sm-4 py-3">
             <!-- footer first section -->
-            <h2 class="footer-top-head-w3l font-weight-bold mb-2">Electronics :</h2>
+            <h2 class="footer-top-head-w3l font-weight-bold mb-2">KỸ THUẬT NUÔI, NHÂN GIỐNG CHIM CHÀO MÀO</h2>
             <p class="footer-main mb-4">
-                If you're considering a new laptop, looking for a powerful new car stereo or shopping for a new HDTV, we make it easy to
-                find exactly what you need at a price you can afford. We offer Every Day Low Prices on TVs, laptops, cell phones, tablets
-                and iPads, video games, desktop computers, cameras and camcorders, audio, video and more.</p>
+                Chim Chào Mào ngày càng bị săn bắt nhiều với mục đích nuôi làm cảnh và thú chơi đấu chim Chào Mào ngày càng tăng.
+                Trong khi đó lại ít người quan tâm đến việc nuôi sinh sản đã khiến cho loài chim này ngày càng khan hiếm hơn.
+                Bài viết này sẽ hướng dẫn các bạn kỹ thuật nuôi,
+                nhân giống chim chào mào để phần nào đó giúp cho chào mào tránh khỏi tình trạng ngày càng khan hiếm ở một số vùng miền.</p>
             <!-- //footer first section -->
             <!-- footer second section -->
             <div class="row w3l-grids-footer border-top border-bottom py-sm-4 py-3">
@@ -17,8 +18,8 @@
                             <i class="fas fa-dolly"></i>
                         </div>
                         <div class="col-8 text-form-footer">
-                            <h3>Free Shipping</h3>
-                            <p>on orders over $100</p>
+                            <h3>Miễn phí ship</h3>
+                            <p>cho đơn hàng cá cảnh trên 1.000.000</p>
                         </div>
                     </div>
                 </div>
@@ -28,8 +29,8 @@
                             <i class="fas fa-shipping-fast"></i>
                         </div>
                         <div class="col-8 text-form-footer">
-                            <h3>Fast Delivery</h3>
-                            <p>World Wide</p>
+                            <h3>Thanh toán khi nhận hàng</h3>
+                            <p>Mọi nơi trên đất nước</p>
                         </div>
                     </div>
                 </div>
@@ -39,8 +40,8 @@
                             <i class="far fa-thumbs-up"></i>
                         </div>
                         <div class="col-8 text-form-footer">
-                            <h3>Big Choice</h3>
-                            <p>of Products</p>
+                            <h3>Đa dạng</h3>
+                            <p>sản phẩm</p>
                         </div>
                     </div>
                 </div>
@@ -54,76 +55,76 @@
             <div class="row footer-info w3-agileits-info">
                 <!-- footer categories -->
                 <div class="col-md-3 col-sm-6 footer-grids">
-                    <h3 class="text-white font-weight-bold mb-3">Categories</h3>
+                    <h3 class="text-white font-weight-bold mb-3">Danh mục</h3>
                     <ul>
                         <li class="mb-3">
-                            <a href="product.html">Mobiles </a>
+                            <a href="product.html">Cá cảnh</a>
                         </li>
                         <li class="mb-3">
-                            <a href="product.html">Computers</a>
+                            <a href="product.html">Chim cảnh</a>
                         </li>
                         <li class="mb-3">
-                            <a href="product.html">TV, Audio</a>
+                            <a href="product.html">Cây cảnh</a>
                         </li>
                         <li class="mb-3">
-                            <a href="product2.html">Smartphones</a>
+                            <a href="product2.html">Phụ kiện</a>
                         </li>
                         <li class="mb-3">
-                            <a href="product.html">Washing Machines</a>
+                            <a href="product.html">Đồ ăn & mồi</a>
                         </li>
                         <li>
-                            <a href="product2.html">Refrigerators</a>
+                            <a href="product2.html">Hội thi</a>
                         </li>
                     </ul>
                 </div>
                 <!-- //footer categories -->
                 <!-- quick links -->
                 <div class="col-md-3 col-sm-6 footer-grids mt-sm-0 mt-4">
-                    <h3 class="text-white font-weight-bold mb-3">Quick Links</h3>
+                    <h3 class="text-white font-weight-bold mb-3">Câu hỏi thường gặp</h3>
                     <ul>
                         <li class="mb-3">
-                            <a href="about.html">About Us</a>
+                            <a href="about.html">Về chúng tôi</a>
                         </li>
                         <li class="mb-3">
-                            <a href="contact.html">Contact Us</a>
+                            <a href="contact.html">Liên hệ chúng tôi</a>
                         </li>
                         <li class="mb-3">
-                            <a href="help.html">Help</a>
+                            <a href="help.html">Trợ giúp</a>
                         </li>
                         <li class="mb-3">
-                            <a href="faqs.html">Faqs</a>
+                            <a href="faqs.html">Phạm vi</a>
                         </li>
                         <li class="mb-3">
-                            <a href="terms.html">Terms of use</a>
+                            <a href="terms.html">Điều khoản sử dụng</a>
                         </li>
                         <li>
-                            <a href="privacy.html">Privacy Policy</a>
+                            <a href="privacy.html">Chính sách bảo mật</a>
                         </li>
                     </ul>
                 </div>
                 <div class="col-md-3 col-sm-6 footer-grids mt-md-0 mt-4">
-                    <h3 class="text-white font-weight-bold mb-3">Get in Touch</h3>
+                    <h3 class="text-white font-weight-bold mb-3">Liên lạc</h3>
                     <ul>
                         <li class="mb-3">
-                            <i class="fas fa-map-marker"></i> 123 Sebastian, USA.</li>
+                            <i class="fas fa-map-marker"></i> 58 Võ Văn Tần, Đà Nẵng</li>
                         <li class="mb-3">
-                            <i class="fas fa-mobile"></i> 333 222 3333 </li>
+                            <i class="fas fa-mobile"></i> {{Rand()}} </li>
                         <li class="mb-3">
-                            <i class="fas fa-phone"></i> +222 11 4444 </li>
+                            <i class="fas fa-phone"></i>{{Rand()}}</li>
                         <li class="mb-3">
                             <i class="fas fa-envelope-open"></i>
-                            <a href="mailto:example@mail.com"> mail 1@example.com</a>
+                            <a href="mailto:example@mail.com"> vinasvc{{Rand(5000,10000)}}@gmail.com</a>
                         </li>
                         <li>
                             <i class="fas fa-envelope-open"></i>
-                            <a href="mailto:example@mail.com"> mail 2@example.com</a>
+                            <a href="mailto:example@mail.com"> vinasvc{{Rand(5000,10000)}}@gmail.com</a>
                         </li>
                     </ul>
                 </div>
                 <div class="col-md-3 col-sm-6 footer-grids w3l-agileits mt-md-0 mt-4">
                     <!-- newsletter -->
-                    <h3 class="text-white font-weight-bold mb-3">Newsletter</h3>
-                    <p class="mb-3">Free Delivery on your first order!</p>
+                    <h3 class="text-white font-weight-bold mb-3">Voucher</h3>
+                    <p class="mb-3">Free ship và giảm 20% tối đa 50.000 cho đơn hàng đầu tiên</p>
                     <form action="#" method="post">
                         <div class="form-group">
                             <input type="email" class="form-control" placeholder="Email" name="email" required="">
@@ -133,7 +134,7 @@
                     <!-- //newsletter -->
                     <!-- social icons -->
                     <div class="footer-grids  w3l-socialmk mt-3">
-                        <h3 class="text-white font-weight-bold mb-3">Follow Us on</h3>
+                        <h3 class="text-white font-weight-bold mb-3">Theo dõi chúng tôi</h3>
                         <div class="social">
                             <ul>
                                 <li>

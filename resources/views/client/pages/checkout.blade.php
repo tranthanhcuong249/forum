@@ -39,7 +39,7 @@
                                                 @foreach( $user->Customer as $key => $cus )
         											<li>
                                                         <input type="radio" class="rdoAddress" name="rdoaddress" @if($cus->active == 1) checked @endif value="{{$cus->email}}" style="float: left;">
-                                                            <span style="float: left;">
+                                                            <span >
                                                                 <i class="name{{ $key }}">{{ $user->name }}</i> | <i class="phone{{$key}}">{{ $cus->phone }}</i>
                                                                 <p class="address{{$key}}">{{ $cus->address }}</p>
                                                             </span>

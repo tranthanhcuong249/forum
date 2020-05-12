@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use Illuminate\Http\Request;
+use DB;
 
 class DoneOrderController extends Controller
 {
@@ -13,7 +15,11 @@ class DoneOrderController extends Controller
      */
     public function index()
     {
-        //
+        $order = Order::all();
+        $data = DB::table('orders')->where('status', '=', '2')->sum('monney');
+        $data1 = DB::table('orders')->where('address', '=', 'Thanh Khê - Đà Nẵng')->where('status', '=', '2')->sum('monney');
+        $data3 = DB::table('orders')->whereMonth('updated_at', '12')->where('status', '=', '2')->sum('monney');
+        return view('admin.pages.order.doneorder', ['order' => $order,'data' => $data,'data1' => $data1,'data3' => $data3]);
     }
 
     /**
@@ -79,6 +85,11 @@ class DoneOrderController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $order = Order::find($id);
+        if ($order->delete()) {
+            return response()->json(['success' => 'Đã xóa thành công đơn hàng của ' . $order->name], 200);
+        } else {
+            return response()->json(['success' => 'Đã xóa thành công đơn hàng của ' . $order->name], 200);
+        }
     }
 }

@@ -17,6 +17,7 @@ $(document).ready(function () {
             dataType : 'json',
             type : 'get',
             success : function ($result) {
+                console.log($result);
                 $('.namecat').val($result.name);
                 $('.title').text($result.name);
                 if($result.status==1) {
@@ -61,17 +62,13 @@ $(document).ready(function () {
     //xóa
     $('.delete').click(function () {
         let id = $(this).data('id');
-        $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
         $('.del').click(function () {
             $.ajax({
                 url : 'admin/categories/'+id,
                 dataType: 'json',
                 type : 'delete',
                 success : function ($result) {
+                    console.log($result);
                     toastr.success($result.success,'Thông báo',{timeOut:5000});
                     $('#delete').hide();
                     location.reload();
@@ -206,6 +203,7 @@ $(document).ready(function () {
            dataType : 'json',
            type : 'get',
            success : function ($data) {
+               console.log($data);
                $('.namePro').val($data.product.name);
                CKEDITOR.instances['editor1'].setData($data.product.description);
                $('.quantityPro').val($data.product.quantity);
@@ -320,102 +318,230 @@ $(document).ready(function () {
     });
 
 
+    //đơn hàng
+    $('.editOrder').click(function () {
+        let id = $(this).data('id');
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        //
+        $.ajax({
+            url : 'admin/order/'+id+'/edit',
+            dataType : 'json',
+            type : 'get',
+            success : function ($result) {
+                $('.titleorder').text($result.order.name);
+                console.log($result);
+                if($result.order.status==1) {
+                    $('.ht').attr('selected','selected');
+                } else {
+                    $('.kht').attr('selected','selected');
+                }
+            }
+        });
+        $('#update').click(function () {
+            let status= $('.status').val();
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url : 'admin/order/'+id,
+                data : {
+                    status : status,
+                },
+                type : 'put',
+                dataType: 'json',
+                success : function($result) {
+                    console.log($result);
+                    toastr.success($result.success,'Thông báo',{timeOut:5000});
+                    $('#update1').hide();
+                    location.reload();
+                }
+            });
+        });
+    });
+
+    // hủy đơn hàng
+    $('.deleteOrder').click(function () {
+        let id = $(this).data('id');
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $('.delOrder').click(function () {
+            $.ajax({
+                url : 'admin/order/'+id,
+                dataType: 'json',
+                type : 'delete',
+                success : function ($result) {
+                    toastr.success($result.success,'Thông báo',{timeOut:5000});
+                    $('#delete').hide();
+                    location.reload();
+                }
+            });
+        });
+    });
+
+    //đơn hàng đã gửi
+    $('.editOrders').click(function () {
+        let id = $(this).data('id');
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        //
+        $.ajax({
+            url : 'admin/shiporder/'+id+'/edit',
+            dataType : 'json',
+            type : 'get',
+            success : function (data) {
+                console.log(data);
+                $('.titleorders').text(data.order.name);
+                if(data.order.status==1) {
+                    $('.ht').attr('selected','selected');
+                } else {
+                    $('.kht').attr('selected','selected');
+                }
+            }
+        });
+        $('#update').click(function () {
+            let status= $('.status').val();
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url : 'admin/order/'+id,
+                data : {
+                    status : status,
+                },
+                type : 'put',
+                dataType: 'json',
+                success : function($result) {
+                    console.log($result);
+                    toastr.success($result.success,'Thông báo',{timeOut:5000});
+                    $('#update1').hide();
+                    location.reload();
+                }
+            });
+        });
+    });
+
+    // hủy đơn hàng
+    $('.deleteOrders').click(function () {
+        let id = $(this).data('id');
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $('.delOrders').click(function () {
+            $.ajax({
+                url : 'admin/order/'+id,
+                dataType: 'json',
+                type : 'delete',
+                success : function ($result) {
+                    toastr.success($result.success,'Thông báo',{timeOut:5000});
+                    $('#delete').hide();
+                    location.reload();
+                }
+            });
+        });
+    });
+
     // update user
-    // $('.editUser').click(function () {
-    //     $('.errorName').hide();
-    //     $('.errorEmail').hide();
-    //     $('.errorPassword').hide();
-    //     $('.errorPhone').hide();
-    //     $('.errorAvatar').hide();
-    //     let id =$(this).data('id');
-    //     console.log(id);
-    //     $.ajax({
-    //         url : 'admin/user/'+id+'/edit',
-    //         dataType : 'json',
-    //         type : 'get',
-    //         success : function ($data) {
-    //             if($data.user.status==0) {
-    //                 $('.ht').attr('selected','selected');
-    //             }
-    //             else {
-    //                 $('.kht').attr('selected','selected');
-    //             }
-    //             $('.nameUser').val($data.user.name);
-    //             $('.emailUser').val($data.user.email);
-    //             if($data.user.avatar=='') {
-    //                 $('.imageThum').attr('src','img/upload/user/'+'default.png');
-    //             }
-    //             else {
-    //                 $('.imageThum').attr('src','img/upload/user/'+$data.user.avatar);
-    //             }
-    //             $('.passwordUser').val($data.user.password);
-    //             console.log($data.user.name);
-    //             console.log($data.user.password);
-    //             $('.phoneUser').val($data.user.phone);
-    //             if($data.user.role==1) {
-    //                 $('.admin').attr('selected','selected');
-    //             }
-    //             else if($data.user.role==2) {
-    //                 $('.qldm').attr('selected','selected');
-    //             }
-    //             else {
-    //                 $('.nvbh').attr('selected','selected');
-    //             }
-    //         }
-    //     });
-    //     $('.updateUser').on('click', function (event) {
-    //         event.preventDefault();
-    //         let ten = $("input[name=ten]").val();
-    //         let email= $("input[name=email]").val();
-    //         let password = $("input[name=password]").val();
-    //         let phone= $("input[name=phone]").val();
-    //         let role = $("input[name=role]").val();
-    //         let status= $("input[name=status]").val();
-    //         let avatar= $("img[name=avatar]").val();
-    //         $.ajax({
-    //             url : 'admin/updateUser/'+id,
-    //             //data : new FormData(this),
-    //             data : {
-    //                 name :ten,
-    //                 email : email,
-    //                 password : password,
-    //                 phone : phone,
-    //                 role : role,
-    //                 status : status,
-    //                 avatar : avatar,
-    //             },
-    //             // contentType : false,
-    //             // processData : false,
-    //             // cache : false,
-    //             type : 'put',
-    //             success : function ($data) {
-    //                 console.log($data);
-    //                 alert($data.success);
-    //                 if($data.error == 'true') {
-    //                     if($data.message.name) {
-    //                         $('.errorName').show();
-    //                         $('.errorName').text($data.message.name[0]);
-    //                     }
-    //                     if($data.message.email) {
-    //                         $('.errorEmail').show();
-    //                         $('.errorEmail').text($data.message.email[0]);
-    //                     }
-    //                     if($data.message.phone) {
-    //                         $('.errorPhone').show();
-    //                         $('.errorPhone').text($data.message.phone[0]);
-    //                     }
-    //                     if($data.message.avatar) {
-    //                         $('.errorAvatar').show();
-    //                         $('.errorAvatar').text($data.message.avatar[0]);
-    //                     }
-    //                 }
-    //                 else {
-    //                     toastr.success($data.result, 'Thông báo', {timeOut: 5000});
-    //                     $('#update1').hide();
-    //                     //location.reload();
-    //                 }
-    //             }
-    //         });
-    //     });
-    // });
+    $('.editUser').click(function () {
+        $('.errorName').hide();
+        $('.errorEmail').hide();
+        $('.errorPassword').hide();
+        $('.errorPhone').hide();
+        $('.errorAvatar').hide();
+        let id =$(this).data('id');
+        console.log(id);
+        $.ajax({
+            url : 'admin/user/'+id+'/edit',
+            dataType : 'json',
+            type : 'get',
+            success : function ($data) {
+                $('.titleUser').text($data.user.name);
+                if($data.user.status==0) {
+                    $('.ht').attr('selected','selected');
+                }
+                else {
+                    $('.kht').attr('selected','selected');
+                }
+                $('.nameUser').val($data.user.name);
+                $('.emailUser').val($data.user.email);
+                if($data.user.avatar=='') {
+                    $('.imageThum').attr('src','img/upload/user/'+'default.png');
+                }
+                else {
+                    $('.imageThum').attr('src','img/upload/user/'+$data.user.avatar);
+                }
+                $('.passwordUser').val($data.user.password);
+                $('.phoneUser').val($data.user.phone);
+                if($data.user.role==1) {
+                    $('.admin').attr('selected','selected');
+                }
+                else if($data.user.role==2) {
+                    $('.qldm').attr('selected','selected');
+                }
+                else if($data.user.role==3) {
+                    $('.nvbh').attr('selected','selected');
+                }
+                else if($data.user.role==4) {
+                    $('.qldh').attr('selected','selected');
+                }
+                else {
+                    $('.customer').attr('selected','selected');
+                }
+            }
+        });
+        $('.updateUser').click(function () {
+            $('.error').hide();
+            let ten = $('.nameUser').val();
+            let email = $('.emailUser').val();
+            let pass = $('.passwordUser').val();
+            let phone = $('.phoneUser').val();
+            let avatar = $('.avatarUser').val();
+            let role = $('.roleUser').val();
+            let status= $('.statusUser').val();
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url : 'admin/user/'+id,
+                data : {
+                    name : ten,
+                    email : email,
+                    phone : phone,
+                    password : pass,
+                    role : role,
+                    status : status,
+                },
+                type : 'put',
+                dataType: 'json',
+                success : function($result) {
+                    console.log($result);
+                    if($result.error == 'true') {
+                        $('.error').show();
+                        $('.error').text($result.message);
+                    } else {
+                        toastr.success($result.success,'Thông báo',{timeOut:5000});
+                    $('#update1').hide();
+                    location.reload();
+                    }
+                }
+            });
+        });
+    });
 });

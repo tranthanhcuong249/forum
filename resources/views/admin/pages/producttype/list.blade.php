@@ -11,7 +11,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <strong class="card-title">ProductType</strong>
+                            <strong class="card-title">Sản phẩm</strong>
                         </div>
                         <div class="card-body">
                             <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
@@ -96,7 +96,7 @@
                                 <button type="submit" class="btn btn-success " style="font-size: 11px; border-radius:2px;
                                                                             font-weight: 700;">Làm lại</button>
                                 <button type="submit" class="btn btn-danger " style="font-size: 11px; border-radius:2px;
-                                                                            font-weight: 700;">Cancle</button>
+                                                                            font-weight: 700;">Hủy</button>
                             </div>
                         </form>
                     </div>

@@ -67,7 +67,7 @@ $(document).ready(function () {
 		containerID: 'toTop', // fading element id
 		containerHoverID: 'toTopHover', // fading element hover id
 		scrollSpeed: 1200,
-		easingType: 'linear' 
+		easingType: 'linear'
 	};
 	*/
 	$().UItoTop({
@@ -87,5 +87,12 @@ function messageSuccess($message){
 function messageError($message){
 	toastr.error($message, 'Thông báo', {timeOut: 5000});
 }
-	
+function openForm() {
+    document.getElementById("myForm").style.display = "block";
+}
+
+function closeForm() {
+    document.getElementById("myForm").style.display = "none";
+}
+
 

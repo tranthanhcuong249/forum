@@ -2,13 +2,13 @@
 <html>
 <head>
     <meta charset="utf-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>
         @yield('title')
     </title>
     <meta name="description" content="Sufee Admin - HTML5 Admin Template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <link rel="apple-touch-icon" href="apple-icon.png">
     <link rel="shortcut icon" href="favicon.ico">
@@ -44,7 +44,7 @@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
                 <i class="fa fa-bars"></i>
             </button>
-            <a class="navbar-brand" href="/admin"><img src="{{asset('libraries/admin/images/logo.png')}}" alt="Logo"></a>
+            <a class="navbar-brand" href="/admin"><img src="{{asset('libraries/admin/images/logo3.png')}}" alt="Logo"></a>
             <a class="navbar-brand hidden" href="./"><img src="{{asset('libraries/admin/images/logo2.png')}}" alt="Logo"></a>
         </div>
 
@@ -98,9 +98,9 @@
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>Quản Lý Đơn Hàng</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="fa fa-puzzle-piece"></i><a href="#">Đơn Hàng</a></li>
-                            <li><i class="fa fa-id-badge"></i><a href="#">Đơn Hàng Đã Gửi</a></li>
-                            <li><i class="fa fa-bars"></i><a href="#">Đơn Hàng Đã Giao</a></li>
+                            <li><i class="fa fa-puzzle-piece"></i><a href="{{Route('order.index')}}">Đơn Hàng</a></li>
+                            <li><i class="fa fa-id-badge"></i><a href="{{Route('shiporder.index')}}">Đơn Hàng Đã Gửi</a></li>
+                            <li><i class="fa fa-bars"></i><a href="{{Route('doneorder.index')}}">Đơn Hàng Đã Giao</a></li>
                         </ul>
                     </li>
                 @endif
@@ -202,7 +202,7 @@
             <div class="col-sm-5">
                 <div class="user-area dropdown float-right">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img class="user-avatar rounded-circle" src="{{asset('libraries/admin/images/avatar/admin.jpg')}}" alt="User Avatar">
+                        <img class="user-avatar rounded-circle" src="{{asset('libraries/admin/images/avatar/default.png')}}" alt="User Avatar">
                     </a>
 
                     <div class="user-menu dropdown-menu">

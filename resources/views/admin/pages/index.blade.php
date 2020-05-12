@@ -35,7 +35,7 @@
                     <h4 class="mb-0">
                         <span class="count">{{ count($getProType) }}</span>
                     </h4>
-                    <p class="text-light">Bài Viết</p>
+                    <p class="text-light">Loại sản phẩm</p>
 
                     <div class="chart-wrapper px-0" style="height:70px;" height="70">
                         <canvas id="widgetChart1"></canvas>
@@ -94,7 +94,7 @@
                     <h4 class="mb-0">
                         <span class="count">{{ count($getCate) }}</span>
                     </h4>
-                    <p class="text-light">Loại Tin</p>
+                    <p class="text-light">Danh mục</p>
 
                 </div>
 
@@ -123,7 +123,7 @@
                     <h4 class="mb-0">
                         <span class="count">{{ count($getPro) }}</span>
                     </h4>
-                    <p class="text-light">Làm Sau</p>
+                    <p class="text-light">Sản phẩm</p>
 
                     <div class="chart-wrapper px-3" style="height:70px;" height="70">
                         <canvas id="widgetChart4"></canvas>

@@ -1,7 +1,7 @@
 @extends('client.layouts.master')
 
 @section('title')
-    Chi tiết sản phẩm - {{ $product->name }}
+    {{ $product->name }}
 @endsection
 
 @section('content')

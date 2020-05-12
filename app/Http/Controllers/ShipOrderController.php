@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
+use App\Models\Product;
+use App\Models\OrderDetail;
 use Illuminate\Http\Request;
 
 class ShipOrderController extends Controller
@@ -13,7 +16,8 @@ class ShipOrderController extends Controller
      */
     public function index()
     {
-        //
+        $order = Order::all();
+        return view('admin.pages.order.listship', ['order' => $order]);
     }
 
     /**
@@ -56,7 +60,8 @@ class ShipOrderController extends Controller
      */
     public function edit($id)
     {
-        //
+        $order = Order::find($id);
+        return response()->json(['order'=>$order],200);
     }
 
     /**
@@ -68,7 +73,14 @@ class ShipOrderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $order = Order::find($id);
+        $data['status'] = $request->status;
+        if($order->update($data)) {
+            return response()->json(['success' => 'Đã sửa thành công đơn hàng của khách hàng tên là '.$order->name],200);
+        }
+        else {
+            return response()->json(['success' => 'Đã sửa đơn hàng thành công của khách hàng tên là '.$request->name],200);
+        }
     }
 
     /**
@@ -79,6 +91,11 @@ class ShipOrderController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $order = Order::find($id);
+        if ($order->delete()) {
+            return response()->json(['success' => 'Đã xóa thành công đơn hàng của ' . $order->name], 200);
+        } else {
+            return response()->json(['success' => 'Đã xóa thành công đơn hàng của ' . $order->name], 200);
+        }
     }
 }
